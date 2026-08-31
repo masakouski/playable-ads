@@ -1,0 +1,8 @@
+{
+  "title": "Car Quiz",
+  "description": "Three quick car-trivia questions with silhouette picking, a per-question timer and a score-based end card.",
+  "tags": ["quiz", "trivia", "3 questions"],
+  "accent": "#f97316",
+  "orientation": "portrait",
+  "status": "ready"
+}

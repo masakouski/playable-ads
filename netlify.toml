@@ -1,0 +1,17 @@
+# Netlify deploy config.
+# `npm run build` inlines each project into dist/<name>/index.html and
+# writes a dist/index.html that links to them.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# No X-Frame-Options / frame-ancestors is set anywhere, so ad-network
+# preview tools can iframe the playable. Keep it that way.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

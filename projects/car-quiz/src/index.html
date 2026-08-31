@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<!-- ad.size helps some networks pick a frame; the layout itself is fully fluid -->
+<meta name="ad.size" content="width=320,height=480">
+<title>Car Quiz</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="stage">
+  <div class="road" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <header class="hud" id="hud">
+    <div class="pips" id="pips"></div>
+    <div class="timer" id="timer"><i id="timerFill"></i></div>
+  </header>
+
+  <main class="screen" id="screen"></main>
+
+  <button class="corner-cta" id="cornerCta" type="button" hidden>PLAY NOW</button>
+</div>
+
+<script src="config.js"></script>
+<script src="../../../shared/playable-sdk.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
