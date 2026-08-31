@@ -158,11 +158,12 @@
 
     var answers = q.answers
       .map(function (a, i) {
-        var inner =
-          q.type === 'image'
-            ? carSvg(a.car) + '<span class="cap">' + (a.label || '') + '</span>'
-            : a.label;
-        return '<button class="answer" type="button" data-i="' + i + '">' + inner + '</button>';
+        // Image answers show the silhouette only — a visible caption would give
+        // the answer away. The label survives as the accessible name.
+        var isImage = q.type === 'image';
+        var inner = isImage ? carSvg(a.car) : a.label;
+        var aria = isImage && a.label ? ' aria-label="' + a.label + '"' : '';
+        return '<button class="answer" type="button"' + aria + ' data-i="' + i + '">' + inner + '</button>';
       })
       .join('');
 
@@ -266,7 +267,7 @@
     var title = CFG.endTitles[Math.min(score, CFG.endTitles.length - 1)];
 
     show(
-      '<div class="score" style="--pct:' + pct + '%"><span>' + score + '<small>/' + total + '</small></span></div>' +
+      '<div class="score" style="--pct:' + pct + '%"><span><em>' + score + '<small>/' + total + '</small></em></span></div>' +
         '<div>' +
         '<h2 class="title">' + title + '</h2>' +
         '<p class="subtitle">' + CFG.endSubtitle + '</p>' +

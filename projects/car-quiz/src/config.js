@@ -31,7 +31,9 @@ window.PLAYABLE_CONFIG = {
   /* ---- the quiz ----
    * type: 'text'  -> answers are words
    *       'image' -> answers are car silhouettes (see CARS in game.js:
-   *                  sports, suv, pickup, van, hatchback)
+   *                  sports, suv, pickup, van, hatchback). `label` is NOT
+   *                  drawn on screen for these — printing it would give the
+   *                  answer away — it is only the screen-reader name.
    */
   questions: [
     {

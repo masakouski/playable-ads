@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="ad.size" content="width=320,height=480">
+<title>Hole Eater 3D</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="stage">
+  <canvas id="gl"></canvas>
+
+  <header class="hud" id="hud" hidden>
+    <div class="stat"><b id="score">0</b><span id="scoreLabel">eaten</span></div>
+    <div class="timer" id="timer"><i id="timerFill"></i></div>
+  </header>
+
+  <div class="banner" id="banner" hidden></div>
+  <div class="hint" id="hint" hidden><span class="hand"></span><em id="hintText">DRAG TO MOVE THE HOLE</em></div>
+
+  <div class="sizebar" id="sizeBar" hidden aria-hidden="true"><i id="sizeFill"></i></div>
+
+  <div class="pops" id="pops" aria-hidden="true"></div>
+  <div class="flash" id="flash" aria-hidden="true"></div>
+
+  <div class="overlay" id="overlay" hidden>
+    <div class="card" id="card">
+      <div class="badge" id="cardBadge"></div>
+      <h1 id="cardTitle"></h1>
+      <p id="cardText"></p>
+      <button class="btn" id="cardBtn" type="button"></button>
+      <button class="btn ghost" id="cardBtn2" type="button" hidden></button>
+    </div>
+  </div>
+
+  <button class="corner-cta" id="cornerCta" type="button" hidden>PLAY NOW</button>
+</div>
+
+<script src="config.js"></script>
+<script src="../../../shared/playable-sdk.js"></script>
+<script src="engine.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

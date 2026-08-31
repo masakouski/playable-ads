@@ -1,0 +1,8 @@
+{
+  "title": "Hole Eater 3D",
+  "description": "A 3D hole roams a sunny city block swallowing cars, trees and houses. Scripted intro shows the hole eating a bomb and losing, then hands control to the player for a 20-second run.",
+  "tags": ["3d", "webgl", "hole", "arcade"],
+  "accent": "#ff7a1f",
+  "orientation": "portrait",
+  "status": "ready"
+}

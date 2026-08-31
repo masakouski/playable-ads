@@ -72,7 +72,10 @@ function readMeta(name) {
 
 function card(r) {
   const m = r.meta;
-  const href = `./${encodeURIComponent(r.name)}/`; // dir index — clean URL on Netlify and serve.js
+  // Point at the file, not the directory: a bare directory URL relies on the
+  // server serving an index, and some (file://, plain static servers) show a
+  // folder listing instead — an extra click between the card and the game.
+  const href = `./${encodeURIComponent(r.name)}/index.html`;
   const tags = m.tags
     .slice(0, 4)
     .map((t) => `<li>${esc(t)}</li>`)

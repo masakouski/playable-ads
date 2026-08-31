@@ -237,9 +237,8 @@ html, body {
 }
 
 /* image answers */
-.answers.image .answer { flex-direction: column; padding: calc(var(--u) * 2.2); gap: calc(var(--u) * .8); }
-.answers.image svg { width: 78%; max-width: calc(var(--u) * 46); height: auto; display: block; }
-.answers.image .cap { font-size: calc(var(--u) * 3.2); color: var(--muted); font-weight: 600; }
+.answers.image .answer { flex-direction: column; padding: calc(var(--u) * 2.6); }
+.answers.image svg { width: 82%; max-width: calc(var(--u) * 50); height: auto; display: block; }
 
 /* wider screens: put the three car cards side by side */
 @media (orientation: landscape) {
@@ -262,15 +261,21 @@ html, body {
   animation: pop .5s ease;
 }
 .score span {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   width: 82%;
   height: 82%;
   border-radius: 50%;
   background: var(--bg1);
+}
+/* One inline unit, so grid centring puts it dead centre in the ring.        */
+/* line-height:1 keeps the glyph box tight — otherwise leading shifts it up. */
+.score em {
+  display: block;
+  font-style: normal;
   font-size: calc(var(--u) * 9);
   font-weight: 800;
+  line-height: 1;
 }
 .score small {
   font-size: calc(var(--u) * 4.2);

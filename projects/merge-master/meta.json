@@ -1,0 +1,8 @@
+{
+  "title": "Merge Master",
+  "description": "Backpack auto-battler: drag gear from the shop into a Tetris-style bag, merge duplicates to tier them up, then send the hero into a scripted boss fight. Ported from the Cocos Creator project; all art is vector draw calls, zero image assets.",
+  "tags": ["merge", "backpack", "auto-battler", "drag & drop"],
+  "accent": "#f4b62c",
+  "orientation": "portrait",
+  "status": "ready"
+}
