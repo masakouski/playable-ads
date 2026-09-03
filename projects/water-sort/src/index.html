@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="ad.size" content="width=320,height=480">
+<title>Water Sort Puzzle</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="stage">
+  <canvas id="game"></canvas>
+
+  <header class="hud" id="hud" hidden>
+    <div class="pill" id="levelPill">LEVEL 1</div>
+    <button class="restart" id="restart" type="button" aria-label="Restart level">&#8635;</button>
+  </header>
+
+  <div class="banner" id="banner" hidden></div>
+  <div class="toast" id="toast" hidden></div>
+  <div class="hint" id="hint" hidden><em id="hintText">TAP A BOTTLE, THEN ANOTHER</em></div>
+
+  <div class="overlay" id="overlay" hidden>
+    <div class="card" id="card">
+      <div class="badge" id="cardBadge" hidden></div>
+      <h1 id="cardTitle"></h1>
+      <p id="cardText"></p>
+      <button class="btn" id="cardBtn" type="button"></button>
+    </div>
+  </div>
+
+  <button class="corner-cta" id="cornerCta" type="button" hidden>PLAY NOW</button>
+</div>
+
+<script src="config.js"></script>
+<script src="../../../shared/playable-sdk.js"></script>
+<script src="puzzle.js"></script>
+<script src="art.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

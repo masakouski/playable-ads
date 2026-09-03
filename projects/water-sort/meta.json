@@ -1,0 +1,8 @@
+{
+  "title": "Water Sort Puzzle",
+  "description": "Glossy glass tubes filled with up to four colours of liquid. A scripted demo teaches the pour rule, then the player sorts two generated levels until every bottle holds one colour.",
+  "tags": ["puzzle", "canvas", "water-sort", "relaxing"],
+  "accent": "#2ec4ff",
+  "orientation": "portrait",
+  "status": "ready"
+}
