@@ -1,0 +1,8 @@
+{
+  "title": "Coin Sort Vault",
+  "description": "A vault of coin columns seen from above. Move matching coins between columns, stack ten of a kind to merge them into two bigger coins, and hit DROP for a random cash-in until the target coins are collected.",
+  "tags": ["puzzle", "canvas", "sort", "merge", "idle"],
+  "accent": "#ffcf3a",
+  "orientation": "portrait",
+  "status": "ready"
+}
