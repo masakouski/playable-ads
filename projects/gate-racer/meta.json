@@ -1,0 +1,8 @@
+{
+  "title": "Gate Racer 3D",
+  "description": "A 3D straight-line race. Steer the car between green and red gates that boost speed, refill the tank or multiply the score, then face the rival waiting at the finish line — beat his points or watch him drive off without you.",
+  "tags": ["3d", "webgl", "racing", "arcade", "choice"],
+  "accent": "#2fd166",
+  "orientation": "portrait",
+  "status": "ready"
+}

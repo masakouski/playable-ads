@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="ad.size" content="width=320,height=480">
+<title>Gate Racer 3D</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="stage">
+  <canvas id="gl"></canvas>
+
+  <div class="speedlines" id="speedLines" aria-hidden="true"></div>
+
+  <header class="hud" id="hud" hidden>
+    <div class="row">
+      <div class="stat"><b id="points">0</b><span>POINTS</span></div>
+      <div class="target">BEAT<b id="target">0</b></div>
+    </div>
+    <div class="fuel" id="fuel"><i id="fuelFill"></i><em>FUEL</em></div>
+    <div class="track"><i id="trackFill"></i><s id="trackCar"></s></div>
+  </header>
+
+  <div class="speedo" id="speedo" hidden><b id="kmh">0</b><span>KM/H</span></div>
+
+  <div class="banner" id="banner" hidden></div>
+  <div class="hint" id="hint" hidden><span class="hand"></span><em id="hintText">DRAG TO STEER</em></div>
+
+  <div class="gates" id="gateLabels" aria-hidden="true"></div>
+  <div class="pops" id="pops" aria-hidden="true"></div>
+  <div class="flash" id="flash" aria-hidden="true"></div>
+
+  <div class="overlay" id="overlay" hidden>
+    <div class="card" id="card">
+      <div class="badge" id="cardBadge"></div>
+      <h1 id="cardTitle"></h1>
+      <p id="cardText"></p>
+      <div class="tally" id="cardTally" hidden>
+        <div><b id="tallyYou">0</b><span id="tallyYouLabel">YOU</span></div>
+        <div class="vs">VS</div>
+        <div><b id="tallyRival">0</b><span id="tallyRivalLabel">RIVAL</span></div>
+      </div>
+      <button class="btn" id="cardBtn" type="button"></button>
+      <button class="btn ghost" id="cardBtn2" type="button" hidden></button>
+    </div>
+  </div>
+
+  <button class="corner-cta" id="cornerCta" type="button" hidden>PLAY NOW</button>
+</div>
+
+<script src="config.js"></script>
+<script src="../../../shared/playable-sdk.js"></script>
+<script src="engine.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

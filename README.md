@@ -125,6 +125,45 @@ item on an empty cell advances the tutorial instead of stalling it; and any
 touch anywhere counts as engagement (resets the autoplay timer, reports
 `gameStart()`), even one the tutorial gate refuses.
 
+### `gate-racer`
+
+A 3D straight-line race decided by which gate you drive through, in ~70 KB.
+Flow: a scripted demo run (the car takes one green gate, then two red ones and
+loses to the rival) -> `Think you can do better? / LET ME RACE` -> the player's
+own race, steered by dragging left/right -> a win or defeat cutscene -> end
+card. An empty tank ends the run early with its own card. Every card carries
+the CTA, and a corner CTA sits on screen during the race.
+
+Every gate is a pair the player must choose between: green helps, red hurts,
+and both halves are often green so the choice is a real one (`+40 POINTS` vs
+`+35 FUEL`). Four effects, all authored per gate in `config.js`: `mul`
+(x2 / /2 points), `add` (+/- points), `fuel` (+/- % of tank) and `speed`
+(boost / brake). Fuel burns faster the faster you go but the tank still lasts
+longer over the same distance at speed, so a run that ignores every fuel gate
+runs dry before the finish — that is the tension behind the greedy line. At the
+finish a rival car stands in one lane with a fixed score on a floating board;
+beat it and you get the burnout, fall short and he drives off and leaves you
+standing.
+
+`src/engine.js` is the hole-eater renderer with the pit machinery removed and a
+new procedural road in the ground shader — asphalt, lane dashes, edge lines,
+kerb blocks, grass shoulders and a checkered finish band, so the ad still ships
+with zero image assets. Gate values are DOM labels tracked to the 3D gates with
+`R.project()` (only the next two gates are labelled, or the numbers pile up in
+the middle of the road). Car parts are drawn through a composed matrix, so the
+car can yaw, roll and spin its wheels properly.
+
+Note that the camera looks down `+Z`, which puts world `+x` on the **left** of
+the screen. One helper (`laneX`/`sideX` in `game.js`) owns that flip; steering,
+gate placement and hit detection all go through it. Getting it wrong swaps the
+gates under the player's finger.
+
+Tuning lives in `projects/gate-racer/src/config.js`: road width, speeds, fuel
+burn, starting points, the rival's score, and the full gate list for both the
+demo and the race. `?e2e=1` exposes `window.GR` for headless runs.
+
+Falls back to an end card with the CTA if the device has no WebGL context.
+
 ## Mintegral
 
 Mintegral (MindWorks) requires a single HTML file up to 5 MB with no external
