@@ -23,7 +23,9 @@
   --key-fn: rgba(255, 255, 255, .45);
 }
 
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+/* touch-action is NOT inherited: without it on every element, a tap that lands on a
+   button/row/key hits the default `auto` and Safari double-tap-zooms. */
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 [hidden] { display: none !important; }
 
 html, body {

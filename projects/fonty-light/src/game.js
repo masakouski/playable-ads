@@ -463,8 +463,38 @@
     armIdle(editHintTarget, 1600);
   }
 
+  /* ---------------- no zoom ----------------
+   * Ad WebViews usually pin the scale themselves, but a plain browser (Safari on
+   * a phone, the Netlify preview, the gallery) does not: iOS has ignored
+   * `user-scalable=no` since iOS 10. CSS `touch-action: manipulation` on every
+   * element kills double-tap zoom; these two listeners cover pinch zoom and the
+   * pre-9.3 double tap. */
+
+  function noZoom() {
+    var last = 0;
+    document.addEventListener('touchend', function (e) {
+      var now = Date.now();
+      // Second tap of a double tap: swallow it. Keys react on pointerdown and
+      // buttons on click, so nothing the player can do is lost.
+      if (now - last <= 320 && e.cancelable) e.preventDefault();
+      last = now;
+    }, { passive: false });
+
+    // WebKit-only pinch gestures (iOS Safari).
+    ['gesturestart', 'gesturechange', 'gestureend'].forEach(function (ev) {
+      document.addEventListener(ev, function (e) {
+        if (e.cancelable) e.preventDefault();
+      }, { passive: false });
+    });
+
+    document.addEventListener('dblclick', function (e) {
+      if (e.cancelable) e.preventDefault();
+    }, { passive: false });
+  }
+
   /* ---------------- boot ---------------- */
 
+  noZoom();
   brand();
   buildRows();
   buildThemes();

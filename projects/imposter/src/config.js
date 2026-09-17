@@ -20,6 +20,7 @@ window.PLAYABLE_CONFIG = {
     p1: { name: 'Alex', word: 'Cheese' },  // connected to the secret word
     p2: { name: 'Max',  word: 'Ocean' },   // not connected
   },
+  imposter: 'p2',            // who is lying: 'p1' or 'p2'
 
   /* ---- pacing (ms) ---- */
   introMs: 1100,             // wide shot before the first cut
@@ -33,11 +34,11 @@ window.PLAYABLE_CONFIG = {
   keepPlayingLabel: 'Keep playing',
   ctaLabel: 'TRY AGAIN',
 
-  /* Outcome per choice. Alex = the player guessed right; Max and
-   * "keep playing" (or letting the timer run out) = the imposter got away. */
+  /* Outcome per choice. Voting for the imposter (Max) = the player wins;
+   * voting for Alex, "keep playing" or letting the timer run out = the imposter got away. */
   outcomes: {
-    p1:   { win: true,  title: 'You caught the imposter!', sub: 'Alex was bluffing all along.', cta: 'PLAY MORE' },
-    p2:   { win: false, title: 'Imposter won! Try again?', sub: 'Max was innocent. Alex fooled you.' },
+    p2:   { win: true,  title: 'You caught the imposter!', sub: 'Max had no idea the word was PIZZA.', cta: 'PLAY MORE' },
+    p1:   { win: false, title: 'Imposter won! Try again?', sub: 'Alex was innocent. Max fooled you.' },
     keep: { win: false, title: 'Imposter won! Try again?', sub: "Time's up — the imposter slipped away." },
   },
 };

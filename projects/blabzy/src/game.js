@@ -31,9 +31,10 @@
 
   /* ---------------- gauge (inline SVG built here: zero asset bytes) ---------- */
 
+  // left = SHY (calm green) -> right = GOAT (hot red)
   var STOPS = [
-    [0, [229, 32, 43]], [0.25, [244, 115, 31]], [0.5, [255, 225, 26]],
-    [0.75, [155, 209, 58]], [1, [11, 155, 69]],
+    [0, [11, 155, 69]], [0.25, [155, 209, 58]], [0.5, [255, 225, 26]],
+    [0.75, [244, 115, 31]], [1, [229, 32, 43]],
   ];
   function colorAt(t) {
     for (var i = 1; i < STOPS.length; i++) {
@@ -42,7 +43,7 @@
         return 'rgb(' + [0, 1, 2].map(function (c) { return Math.round(a[1][c] + (b[1][c] - a[1][c]) * k); }).join(',') + ')';
       }
     }
-    return 'rgb(11,155,69)';
+    return 'rgb(229,32,43)';
   }
 
   var needle;

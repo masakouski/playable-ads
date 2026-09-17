@@ -14,7 +14,7 @@
   --line: rgba(255, 255, 255, .16);
   --pink: #ff2e7e;
   --orange: #ff8a1f;
-  --shy: #5ab8ff;
+  --shy: #4ade80;
   --radius: calc(var(--u) * 4);
 }
 
@@ -65,8 +65,8 @@ html, body {
   margin-top: calc(var(--u) * 1.2);
   font-size: calc(var(--u) * 3.6); font-weight: 800; letter-spacing: .06em;
 }
-.ends span:first-child { color: #ff7a80; }
-.ends span:last-child { color: #6fe08e; }
+.ends span:first-child { color: #6fe08e; }
+.ends span:last-child { color: #ff7a80; }
 
 .react {
   position: absolute; left: 50%; top: 38%;
@@ -180,7 +180,7 @@ html, body {
 .answer:disabled { cursor: default; }
 .answer.dim { opacity: .3; transform: scale(.95); }
 .answer.picked.hot { background: linear-gradient(90deg, rgba(255,138,31,.85), rgba(255,46,126,.9)); border-color: #fff; transform: scale(1.03); }
-.answer.picked.cold { background: linear-gradient(90deg, #2f7fd6, #5ab8ff); border-color: #fff; transform: scale(1.03); }
+.answer.picked.cold { background: linear-gradient(90deg, #159a4c, #4ade80); border-color: #fff; transform: scale(1.03); }
 .or {
   align-self: center; margin: calc(var(--u) * -1) 0;
   font-size: calc(var(--u) * 3.2); font-weight: 900; letter-spacing: .2em; color: var(--muted);

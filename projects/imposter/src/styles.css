@@ -157,7 +157,11 @@ html, body {
 .vote.p2 { background: var(--p2); box-shadow: 0 calc(var(--u)*1.3) 0 var(--p2-dark), 0 calc(var(--u)*2.5) calc(var(--u)*4) rgba(0,0,0,.4); animation-delay: .1s, .85s; }
 .vote i { width: calc(var(--u) * 5.4); height: calc(var(--u) * 5.4); border-radius: 50%; background: rgba(255,255,255,.3); position: relative; }
 .vote i::after { content: ""; position: absolute; inset: 22%; border-radius: 50%; background: #fff; }
-.vote:active, .keep:active { transform: translateY(calc(var(--u) * 1)) scale(.97); animation: none; }
+.choices button, .cta { touch-action: manipulation; }
+.choices button > *, .cta > * { pointer-events: none; }
+/* Press feedback never moves the hit box: a transform on :active used to shift the
+   button away from the finger between touchstart and touchend, and the tap was lost. */
+.vote.pressed, .keep.pressed, .cta.pressed { filter: brightness(1.2); }
 
 .keep {
   padding: calc(var(--u) * 2.4) calc(var(--u) * 7);
@@ -166,7 +170,7 @@ html, body {
   animation: rise .45s cubic-bezier(.3,1.6,.5,1) .2s both;
 }
 @keyframes rise { from { transform: translateY(calc(var(--u) * 14)) scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
-@keyframes breathe { 50% { transform: scale(1.05); } }
+@keyframes breathe { 50% { filter: brightness(1.14); } }
 
 /* ---------- secret word + timer (mid bottom) ---------- */
 
@@ -229,7 +233,7 @@ html, body {
   animation: breathe 1.5s ease-in-out infinite;
 }
 .end.win .cta { background: linear-gradient(#5cf09a, #26c46a); box-shadow: 0 calc(var(--u) * 1.4) 0 #1a8a4a, 0 0 calc(var(--u) * 8) rgba(62,224,127,.5); }
-.cta:active { transform: scale(.97); animation: none; }
+
 
 /* ---------- confetti ---------- */
 

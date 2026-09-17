@@ -40,6 +40,7 @@
     // end shots leave room for the end card: below in portrait, on the right in landscape
     endWide:  { fx: 500, fy: 380, sx: 0.5, sy: 0.30, w: 800, h: 700, land: { fy: 430, sx: 0.3, sy: 0.45, h: 820 } },
     endP1:    { fx: 300, fy: 330, sx: 0.5, sy: 0.28, w: 640, h: 620, land: { fy: 380, sx: 0.3, sy: 0.45, h: 700 } },
+    endP2:    { fx: 700, fy: 330, sx: 0.5, sy: 0.28, w: 640, h: 620, land: { fx: 640, fy: 380, sx: 0.3, sy: 0.45, h: 700 } },
   };
   var cam = { view: null, shot: null, anim: null };
 
@@ -258,42 +259,47 @@
     $('choices').hidden = true;
     stage.classList.remove('questioning');
 
-    if (key === 'p1') await outcomeCaught();
-    else if (key === 'p2') await outcomeWrongVote();
-    else await outcomeKeepPlaying(key === 'timeout');
+    var imp = CFG.imposter === 'p1' ? 'p1' : 'p2';
+    var inn = imp === 'p1' ? 'p2' : 'p1';
+    if (key === imp) await outcomeCaught(imp);
+    else if (key === inn) await outcomeWrongVote(inn, imp);
+    else await outcomeKeepPlaying(imp, key === 'timeout');
 
     showEnd(key === 'timeout' ? 'keep' : key);
   }
 
-  async function outcomeCaught() {
+  function endShot(id) { return id === 'p1' ? 'endP1' : 'endP2'; }
+
+  async function outcomeCaught(imp) {
     stopTimer();
     stage.classList.remove('dim');
-    hideBubble('p2');
-    await moveCamera('p1', 650);
-    hideBubble('p1');
-    setState('p1', 'shocked');
-    badge('p1', 'IMPOSTER');
+    hideBubble(imp === 'p1' ? 'p2' : 'p1');
+    await moveCamera(imp, 650);
+    hideBubble(imp);
+    setState(imp, 'shocked');
+    badge(imp, 'IMPOSTER');
     confetti();
     await wait(900);
-    await moveCamera('endP1', 600);
+    await moveCamera(endShot(imp), 600);
   }
 
-  async function outcomeWrongVote() {
+  async function outcomeWrongVote(inn, imp) {
     stopTimer();
-    hideBubble('p1');
-    await moveCamera('p2', 650);
-    hideBubble('p2');
-    badge('p2', 'INNOCENT', true);
-    setState('p2', 'shocked');
+    hideBubble(imp);
+    await moveCamera(inn, 650);
+    hideBubble(inn);
+    badge(inn, 'INNOCENT', true);
+    setState(inn, 'shocked');
     await wait(900);
-    await moveCamera('p1', 700);
-    setState('p1', 'evil');
-    badge('p1', 'IMPOSTER');
+    await moveCamera(imp, 700);
+    setState(imp, 'evil');
+    badge(imp, 'IMPOSTER');
     await wait(800);
     await moveCamera('endWide', 600);
   }
 
-  async function outcomeKeepPlaying(alreadyZero) {
+  /* Player 1 ponders "???" while the clock runs out, then the imposter is revealed. */
+  async function outcomeKeepPlaying(imp, alreadyZero) {
     stage.classList.remove('dim');
     hideBubble('p2');
     await moveCamera('p1', 700);
@@ -307,9 +313,11 @@
     $('stamp').hidden = true;
     hideBubble('p1');
     setState('p1', 'thinking', false);
-    setState('p1', 'evil');
-    badge('p1', 'IMPOSTER');
-    await moveCamera('endP1', 650);
+    if (imp !== 'p1') await moveCamera(imp, 650);
+    setState(imp, 'evil');
+    badge(imp, 'IMPOSTER');
+    await wait(imp !== 'p1' ? 700 : 0);
+    await moveCamera(imp === 'p1' ? 'endP1' : 'endWide', 650);
   }
 
   function showEnd(key) {
@@ -341,8 +349,26 @@
 
   function choose(key) {
     if (phase !== 'question' || !resolveChoice) return;
+    var r = resolveChoice;
+    resolveChoice = null;
+    phase = 'outcome';
     Playable.start();
-    resolveChoice(key);
+    r(key);
+  }
+
+  function tap(btn, evt, fn) {
+    var last = 0;
+    function fire(e) {
+      if (e.type === 'pointerdown' && e.button > 0) return;
+      var now = Date.now();
+      if (now - last < 500) return; // pointer event + trailing click
+      last = now;
+      btn.classList.add('pressed');
+      setTimeout(function () { btn.classList.remove('pressed'); }, 160);
+      fn();
+    }
+    if (window.PointerEvent) btn.addEventListener(evt, fire);
+    btn.addEventListener('click', fire);
   }
 
   /* ---------------- boot ---------------- */
@@ -361,10 +387,13 @@
     $('keepBtn').textContent = CFG.keepPlayingLabel;
     paintTimer();
 
-    $('voteP1').addEventListener('click', function () { choose('p1'); });
-    $('voteP2').addEventListener('click', function () { choose('p2'); });
-    $('keepBtn').addEventListener('click', function () { choose('keep'); });
-    $('ctaBtn').addEventListener('click', function () { Playable.install('endcard'); });
+    // Votes fire on pointerdown: one touch is enough even if the finger drifts
+    // or the button is mid-pulse. `click` stays as a fallback; choose() is idempotent.
+    tap($('voteP1'), 'pointerdown', function () { choose('p1'); });
+    tap($('voteP2'), 'pointerdown', function () { choose('p2'); });
+    tap($('keepBtn'), 'pointerdown', function () { choose('keep'); });
+    // The store open needs user activation, which pointerup/click carry on touch.
+    tap($('ctaBtn'), 'pointerup', function () { Playable.install('endcard'); });
 
     window.addEventListener('resize', fit);
     window.addEventListener('orientationchange', function () { setTimeout(fit, 150); });
