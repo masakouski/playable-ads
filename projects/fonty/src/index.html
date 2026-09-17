@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="ad.size" content="width=320,height=480">
+<title>Fonty</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="stage">
+  <div id="app">
+
+    <!-- ============ editor: type + pick a style ============ -->
+    <section class="screen editor" id="editor">
+      <header class="bar">
+        <div class="icon" data-icon></div>
+        <div class="brand"><b data-app-name></b><span data-app-sub></span></div>
+        <button class="get" id="headerCta" type="button"></button>
+      </header>
+
+      <div class="input" id="input">
+        <div class="input-text" id="inputText"><span id="typed"></span><i class="caret"></i><span class="ph" id="placeholder"></span></div>
+        <div class="counter" id="counter"></div>
+      </div>
+
+      <div class="label" id="listLabel">Tap a style to copy</div>
+      <div class="list" id="list"></div>
+
+      <div class="kb" id="kb" aria-label="keyboard"></div>
+    </section>
+
+    <!-- ============ story: paste target ============ -->
+    <section class="screen story" id="story" hidden>
+      <div class="scene" aria-hidden="true">
+        <i class="sun"></i>
+        <i class="cloud c1"></i><i class="cloud c2"></i><i class="cloud c3"></i>
+        <i class="hill h1"></i><i class="hill h2"></i><i class="hill h3"></i>
+      </div>
+      <div class="story-top">
+        <div class="segs"><i><b></b></i><i></i><i></i></div>
+        <div class="who"><span class="avatar"></span><b>your story</b><em>now</em><span class="x">&times;</span></div>
+      </div>
+      <div class="story-text" id="storyText"></div>
+      <div class="hearts" id="hearts" aria-hidden="true"></div>
+      <button class="paste" id="pasteBtn" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6a1 1 0 0 1 1 1v1h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2V4a1 1 0 0 1 1-1Zm1 2v2h4V5h-4Z"/></svg>
+        <span>Paste</span>
+      </button>
+      <div class="story-bottom"><span>Send message</span><i>&#9825;</i></div>
+    </section>
+
+    <!-- ============ end card (sheet over the story) ============ -->
+    <section class="sheet" id="sheet" hidden>
+      <div class="icon big" data-icon></div>
+      <h1 data-app-name></h1>
+      <p class="sub" data-app-sub></p>
+      <h2 id="endTitle"></h2>
+      <ul class="bullets" id="bullets"></ul>
+      <button class="cta" id="cta" type="button"></button>
+    </section>
+
+    <!-- overlays -->
+    <div class="toast" id="toast" hidden><div><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Copied!</span></div></div>
+    <div class="turn" id="turn" hidden></div>
+    <div class="skip" id="skip" hidden>Tap to skip</div>
+    <div class="hand" id="hand" hidden><span>&#128070;</span></div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="../../../shared/playable-sdk.js"></script>
+<script src="fonts.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

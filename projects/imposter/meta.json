@@ -1,0 +1,8 @@
+{
+  "title": "Imposter — Who's Lying?",
+  "description": "Camera cuts between two friends giving one-word clues about the secret word, then the player votes: Alex, Max or keep playing. The imposter always has a twist waiting on the end card.",
+  "tags": ["party", "social deduction", "svg", "dom"],
+  "accent": "#ff3b5c",
+  "orientation": "portrait",
+  "status": "ready"
+}

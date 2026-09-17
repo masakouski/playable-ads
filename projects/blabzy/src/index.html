@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="ad.size" content="width=320,height=480">
+<title>Blabzy — Shy or GOAT?</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="stage">
+  <div class="glow" aria-hidden="true"></div>
+
+  <div class="meter" id="meter">
+    <div class="meter-in" id="meterIn">
+      <svg id="gauge" viewBox="7 7 186 108" aria-hidden="true"></svg>
+      <div class="ends"><span id="endL"></span><span id="endR"></span></div>
+      <div class="react" id="react"></div>
+    </div>
+  </div>
+
+  <main class="screen" id="screen"></main>
+
+  <button class="corner-cta" id="cornerCta" type="button" hidden></button>
+  <div class="burst" id="burst" aria-hidden="true"></div>
+</div>
+
+<script src="config.js"></script>
+<script src="../../../shared/playable-sdk.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

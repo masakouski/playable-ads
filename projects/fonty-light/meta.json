@@ -1,0 +1,8 @@
+{
+  "title": "Fonty — Light",
+  "description": "App-Store-screenshot skin of the Fonty playable: white app card, Fonts/Themes tabs, iOS-style keyboard and a step-by-step install end card. Demo types a phrase, copies it in a fancy font and pastes it onto a story, then the player does the same.",
+  "tags": ["utility", "fonts", "keyboard", "light", "dom"],
+  "accent": "#0a74ff",
+  "orientation": "portrait",
+  "status": "ready"
+}

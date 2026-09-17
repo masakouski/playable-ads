@@ -1,0 +1,8 @@
+{
+  "title": "Fonty — Fonts Keyboard",
+  "description": "Scripted demo types a phrase, copies it in a fancy Unicode font and pastes it onto a story. Then the player types on a drawn keyboard, taps a style to copy and hits a big Paste button to see their own text on the story.",
+  "tags": ["utility", "fonts", "keyboard", "dom"],
+  "accent": "#ff4fa3",
+  "orientation": "portrait",
+  "status": "ready"
+}
